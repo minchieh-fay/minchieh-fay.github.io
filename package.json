@@ -3,7 +3,8 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "sync-assets": "bun scripts/sync-assets.mjs",
+    "build": "bun run sync-assets && astro build",
     "preview": "astro preview"
   },
   "dependencies": {

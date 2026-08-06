@@ -17,7 +17,7 @@ tags: [技术, 随笔]
 正文从这里开始。
 ```
 
-文章会按照 `date` 倒序显示，链接为 `/blog/my-first-post/`。图片等资源放进 `asset/`，在文章中用 `/asset/文件名.jpg` 引用。
+文章会按照 `date` 倒序显示，链接为 `/blog/my-first-post/`。图片等资源放进 `asset/`，在文章中用 `/asset/文件名.jpg` 引用。构建时会自动把 `asset/` 复制到网站中。
 
 ## 本地运行
 
@@ -34,6 +34,6 @@ bun run build
 
 ## 发布
 
-推送到 `main` 后，`.github/workflows/pages.yml` 会用 Bun 构建并发布到 GitHub Pages。仓库的 Settings → Pages → Build and deployment 选择 GitHub Actions。
+推送到 `main` 后，`.github/workflows/pages.yml` 会用 Bun 自动构建并发布到 GitHub Pages，不需要提交 `dist/` 或手动编译。仓库的 Settings → Pages → Build and deployment 选择 GitHub Actions。
 
 Cloudflare Pages 使用同一个仓库时，构建命令填写 `bun run build`，输出目录填写 `dist`。
