@@ -1,0 +1,24 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article class="post-page">
+    <header class="post-header">
+      <a class="back-link" href="/">← 全部文章</a>
+      <p class="post-date">{post.data.date.toLocaleDateString('zh-CN')}</p>
+      <h1>{post.data.title}</h1>
+      {post.data.description && <p class="post-description">{post.data.description}</p>}
+      {post.data.tags.length > 0 && <div class="tag-list" aria-label="文章标签">{post.data.tags.map((tag) => <span>#{tag}</span>)}</div>}
+    </header>
+    <div class="post-content"><Content /></div>
+  </article>
+</BaseLayout>
