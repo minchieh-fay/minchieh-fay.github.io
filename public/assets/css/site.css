@@ -54,4 +54,6 @@ pre { overflow-x: auto; padding: 18px; margin: 24px 0; }
 pre code { padding: 0; }
 .simple-page { max-width: 620px; }
 .simple-page p { color: var(--muted); }
+.feedback-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; padding: 12px 17px; border: 1px solid var(--accent); color: var(--accent); font-size: 14px; }
+.feedback-link:hover { background: var(--accent); color: var(--bg); }
 @media (max-width: 650px) { .header-inner, .page-shell, .site-footer { width: min(100% - 32px, 980px); } .site-nav { gap: 13px; } .site-nav a:nth-child(3) { display: none; } .post-list { display: block; } .section-heading { align-items: flex-start; flex-direction: column; } .search-box { width: 100%; } .site-footer { align-items: flex-start; flex-direction: column; gap: 4px; padding-top: 44px; } .post-page, .simple-page { padding-top: 52px; } }
