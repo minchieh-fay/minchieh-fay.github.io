@@ -52,6 +52,8 @@ code, pre { background: var(--code); border-radius: 3px; }
 code { padding: 2px 5px; font: 13px/1.5 "DM Mono", monospace; }
 pre { overflow-x: auto; padding: 18px; margin: 24px 0; }
 pre code { padding: 0; }
+.post-content pre.astro-code { background: var(--code) !important; color: var(--ink) !important; }
+.post-content pre.astro-code span { background: transparent !important; color: var(--ink) !important; }
 .simple-page { max-width: 620px; }
 .simple-page p { color: var(--muted); }
 .feedback-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; padding: 12px 17px; border: 1px solid var(--accent); color: var(--accent); font-size: 14px; }
