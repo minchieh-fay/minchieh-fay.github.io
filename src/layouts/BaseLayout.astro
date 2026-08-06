@@ -25,7 +25,7 @@ const pageTitle = title ? `${title} · Minchieh Fay` : 'Minchieh Fay';
       </div>
     </header>
     <main class="page-shell"><slot /></main>
-    <footer class="site-footer"><span>© {new Date().getFullYear()} Minchieh Fay</span><span>Powered by Markdown · Astro</span></footer>
+    <footer class="site-footer"><span>© {new Date().getFullYear()} Minchieh Fay</span></footer>
     <script is:inline>
       const root = document.documentElement;
       const savedTheme = localStorage.getItem('theme');

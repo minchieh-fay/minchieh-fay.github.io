@@ -5,13 +5,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 <BaseLayout>
-  <section class="home-intro">
-    <p class="eyebrow">PERSONAL NOTES</p>
-    <h1>把想法写下来，<br /><em>让时间留下痕迹。</em></h1>
-    <p class="intro-copy">这里记录技术、阅读、工作，以及生活里值得反复想一想的事情。</p>
-  </section>
   <section class="posts-section" aria-labelledby="posts-heading">
-    <div class="section-heading"><h2 id="posts-heading">最新文章</h2><label class="search-box" for="post-search"><span aria-hidden="true">⌕</span><input id="post-search" type="search" placeholder="搜索文章" autocomplete="off" /></label></div>
+    <div class="section-heading"><label class="search-box" for="post-search"><span aria-hidden="true">⌕</span><input id="post-search" type="search" placeholder="搜索文章" autocomplete="off" /></label></div>
     <div class="post-list" id="post-list">
       {posts.map((post) => <article class="post-card" data-search={`${post.data.title} ${post.data.description ?? ''} ${post.data.tags.join(' ')}`}>
         <div class="post-card-meta"><time datetime={post.data.date.toISOString()}>{post.data.date.toLocaleDateString('zh-CN').replaceAll('/', '.')}</time>{post.data.tags.length > 0 && <span>{post.data.tags.join(' · ')}</span>}</div>
