@@ -9,7 +9,7 @@ Agnes AI 提供可用于个人使用的免费模型 Token。获取 API 密钥后
 
 ## 获取 Agnes API 密钥
 
-1. 打开 <a href="https://platform.agnes-ai.com/" target="_blank" rel="noopener noreferrer">Agnes AI 平台</a> 并注册、登录。
+1. 打开 <a href="https://platform.agnes-ai.cn/" target="_blank" rel="noopener noreferrer">Agnes AI 平台</a> 并注册、登录。
 2. 在左侧导航中依次进入“设置”→“API 密钥”。
 3. 点击“创建新的密钥”，复制生成的 `sk` 开头密钥。
 
