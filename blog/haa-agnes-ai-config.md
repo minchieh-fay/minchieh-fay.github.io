@@ -23,7 +23,7 @@ API 密钥只在自己的配置中使用，不要发布到博客、截图、浏�
 
 | 配置项 | 填写内容 |
 | --- | --- |
-| API 地址 | `https://apihub.agnes-ai.com/v1` |
+| API 地址 | `https://api.agnes-ai.cn/v1` |
 | API Key | 刚才复制的 `sk` 开头密钥 |
 | 模型 | `agnes-2.0-flash` 或 `agnes-2.5-flash` |
 | 协议类型 | `Chat Completions` |
