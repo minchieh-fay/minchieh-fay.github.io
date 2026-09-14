@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Image Agent" description="使用 Agnes Image 2.5 Flash 生成图像。">
+  <div class="agent-page" data-agnes-auth>
+    <div class="agent-auth-dialog" data-agnes-dialog hidden>
+      <div class="agent-dialog-content">
+        <p class="eyebrow">AGNES API</p>
+        <h1>输入 API Key</h1>
+        <p>API Key 只保存在当前浏览器的 localStorage 中。</p>
+        <form data-agnes-form>
+          <label class="tool-field" for="image-agnes-key">Agnes API Key</label>
+          <div class="agent-key-field">
+            <input class="agent-key-input" id="image-agnes-key" data-agnes-key type="password" autocomplete="off" placeholder="输入 AGNES_API_KEY" />
+            <button class="password-toggle" data-agnes-toggle type="button" aria-label="显示 API Key">显示</button>
+          </div>
+          <p class="agent-error" data-agnes-error role="alert"></p>
+          <button class="tool-button tool-button-primary" data-agnes-submit type="submit">验证并进入</button>
+        </form>
+        <a class="agent-register" href="https://platform.agnes-ai.cn" target="_blank" rel="noreferrer">免费注册 ↗</a>
+      </div>
+    </div>
+    <section class="agent-app" data-agnes-app hidden aria-labelledby="image-heading">
+      <header class="agent-header">
+        <div>
+          <a class="back-link" href="/tools/">← 返回工具</a>
+          <p class="eyebrow">AGNES / IMAGE</p>
+          <h1 id="image-heading">Image Agent</h1>
+        </div>
+          <span class="agent-hint">agnes-image-2.5-flash</span>
+      </header>
+      <div class="image-agent-layout">
+        <section class="image-editor" aria-label="图片生成编辑器">
+          <label class="tool-field" for="image-prompt">描述</label>
+          <textarea class="image-prompt" id="image-prompt" data-image-prompt rows="9" placeholder="描述你想生成的图片。可以使用 &lt;Picture 1&gt;、&lt;Picture 2&gt; 引用参考图。"></textarea>
+          <div class="image-options">
+            <label class="tool-field" for="image-ratio">比例
+              <select id="image-ratio" data-image-ratio>
+                <option value="4:3" selected>4:3</option>
+                <option value="1:1">1:1</option>
+                <option value="3:4">3:4</option>
+                <option value="16:9">16:9</option>
+                <option value="9:16">9:16</option>
+                <option value="2:3">2:3</option>
+                <option value="3:2">3:2</option>
+                <option value="21:9">21:9</option>
+              </select>
+            </label>
+            <label class="tool-field" for="image-size">尺寸
+              <select id="image-size" data-image-size>
+                <option value="1K" selected>1K</option>
+                <option value="2K">2K</option>
+                <option value="3K">3K</option>
+                <option value="4K">4K</option>
+              </select>
+            </label>
+          </div>
+          <label class="image-upload" for="image-input">
+            <strong>添加参考图片</strong>
+            <span>点击选择或直接粘贴图片，图片顺序就是 Picture 顺序</span>
+          </label>
+          <input id="image-input" data-image-input type="file" accept="image/*" multiple hidden />
+          <div class="image-references" data-image-references></div>
+          <button class="tool-button tool-button-primary image-generate" data-image-generate type="button">生成图片</button>
+          <p class="agent-error" data-image-error role="alert"></p>
+        </section>
+        <section class="image-result" aria-label="生成结果">
+          <p class="eyebrow">RESULT</p>
+          <div class="image-result-content" data-image-result>
+            <p class="agent-hint">生成的图片会显示在这里。</p>
+          </div>
+        </section>
+      </div>
+      <section class="image-library" aria-labelledby="image-library-heading">
+        <div class="image-library-header">
+          <div>
+            <p class="eyebrow">LIBRARY</p>
+            <h2 id="image-library-heading">图片库</h2>
+          </div>
+          <label class="library-date-filter" for="library-date">按日期
+            <select id="library-date" data-library-date>
+              <option value="all">全部</option>
+            </select>
+          </label>
+        </div>
+        <div class="image-library-grid" data-image-library></div>
+        <p class="agent-hint image-library-empty" data-library-empty>还没有生成记录。</p>
+      </section>
+    </section>
+  </div>
+  <script src="./_main.js"></script>
+</BaseLayout>

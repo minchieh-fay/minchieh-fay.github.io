@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const tools = [
+  {
+    name: 'JSON 格式化',
+    description: '格式化、压缩并校验 JSON 数据。数据只在当前浏览器处理。',
+    href: '/tools/json-formatter/',
+    status: '可用'
+  },
+  {
+    name: 'Chat Agent',
+    description: '使用 Agnes 3.0 Flash 进行多轮对话，并支持图片输入。',
+    href: '/tools/chat-agent/',
+    status: '可用'
+  },
+  {
+    name: 'Image Agent',
+    description: '使用文字和多张参考图生成图像，支持比例和尺寸选择。',
+    href: '/tools/image-agent/',
+    status: '可用'
+  }
+];
+---
+<BaseLayout title="工具" description="一些在浏览器中直接运行的小工具。">
+  <section class="tools-page" aria-labelledby="tools-heading">
+    <div class="tools-heading">
+      <p class="eyebrow">TOOLS</p>
+      <h1 id="tools-heading">工具</h1>
+      <p>一些在浏览器中直接运行的小工具，适合处理不想上传到服务器的临时数据。</p>
+    </div>
+    <div class="tool-list">
+      {tools.map((tool) => (
+        <a class="tool-card" href={tool.href}>
+          <div class="tool-card-topline">
+            <span class="tool-status">{tool.status}</span>
+            <span aria-hidden="true">↗</span>
+          </div>
+          <h2>{tool.name}</h2>
+          <p>{tool.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

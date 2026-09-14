@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Chat Agent" description="使用 Agnes 3.0 Flash 进行多轮对话。">
+  <div class="agent-page" data-agnes-auth>
+    <div class="agent-auth-dialog" data-agnes-dialog hidden>
+      <div class="agent-dialog-content">
+        <p class="eyebrow">AGNES API</p>
+        <h1>输入 API Key</h1>
+        <p>API Key 只保存在当前浏览器的 localStorage 中。</p>
+        <form data-agnes-form>
+          <label class="tool-field" for="chat-agnes-key">Agnes API Key</label>
+          <div class="agent-key-field">
+            <input class="agent-key-input" id="chat-agnes-key" data-agnes-key type="password" autocomplete="off" placeholder="输入 AGNES_API_KEY" />
+            <button class="password-toggle" data-agnes-toggle type="button" aria-label="显示 API Key">显示</button>
+          </div>
+          <p class="agent-error" data-agnes-error role="alert"></p>
+          <button class="tool-button tool-button-primary" data-agnes-submit type="submit">验证并进入</button>
+        </form>
+        <a class="agent-register" href="https://platform.agnes-ai.cn" target="_blank" rel="noreferrer">免费注册 ↗</a>
+      </div>
+    </div>
+    <section class="agent-app" data-agnes-app hidden aria-labelledby="chat-heading">
+      <header class="agent-header">
+        <div>
+          <a class="back-link" href="/tools/">← 返回工具</a>
+          <p class="eyebrow">AGNES / CHAT</p>
+          <h1 id="chat-heading">Chat Agent</h1>
+        </div>
+        <button class="tool-button" data-reset-chat type="button">重置会话</button>
+      </header>
+      <div class="chat-panel">
+        <div class="chat-messages" data-chat-messages aria-live="polite"></div>
+        <div class="chat-attachments" data-chat-attachments hidden></div>
+        <form class="chat-composer" data-chat-form>
+          <textarea data-chat-input rows="3" placeholder="输入消息，Enter 发送，Shift + Enter 换行"></textarea>
+          <div class="chat-composer-footer">
+            <label class="tool-button" for="chat-image-input">添加图片</label>
+            <input id="chat-image-input" data-chat-image type="file" accept="image/*" multiple hidden />
+            <span class="agent-hint">agnes-3.0-flash</span>
+            <button class="tool-button tool-button-primary" data-chat-submit type="submit">发送</button>
+          </div>
+          <p class="agent-error" data-chat-error role="alert"></p>
+        </form>
+      </div>
+    </section>
+  </div>
+  <script src="./_main.js"></script>
+</BaseLayout>

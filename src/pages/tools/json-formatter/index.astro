@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="JSON 格式化" description="在浏览器中格式化、压缩和校验 JSON 数据。">
+  <section class="tool-page" aria-labelledby="json-tool-heading">
+    <a class="back-link" href="/tools/">← 返回工具</a>
+    <header class="tool-page-header">
+      <p class="eyebrow">TOOL / JSON</p>
+      <h1 id="json-tool-heading">JSON 格式化</h1>
+      <p>数据只在当前浏览器处理，不会上传到服务器。</p>
+    </header>
+    <div class="json-tool" data-json-tool>
+      <label class="tool-field" for="json-input">
+        <span>输入 JSON</span>
+        <textarea id="json-input" rows="16" spellcheck="false" placeholder={'{"name":"Minchieh Fay"}'}></textarea>
+      </label>
+      <div class="tool-actions" aria-label="JSON 操作">
+        <button class="tool-button tool-button-primary" type="button" data-action="format">格式化</button>
+        <button class="tool-button" type="button" data-action="minify">压缩</button>
+        <button class="tool-button" type="button" data-action="clear">清空</button>
+      </div>
+      <p class="tool-message" data-message role="status" aria-live="polite"></p>
+    </div>
+  </section>
+  <script src="./_main.js"></script>
+</BaseLayout>

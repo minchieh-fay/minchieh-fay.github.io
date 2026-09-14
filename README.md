@@ -19,6 +19,12 @@ tags: [技术, 随笔]
 
 文章会按照 `date` 倒序显示，链接为 `/blog/my-first-post/`。图片等资源放进 `asset/`，在文章中用 `/asset/文件名.jpg` 引用。构建时会自动把 `asset/` 复制到网站中。
 
+## 添加工具
+
+导航栏中的“工具”指向 `/tools/`，工具页面和源码统一放在 `src/pages/tools/`。工具列表页位于 `src/pages/tools/index.astro`，每个工具使用一个独立目录，例如 `src/pages/tools/json-formatter/`，目录内同时放页面入口和前端业务代码。
+
+工具默认运行在浏览器端。Agnes 工具进入页面时通过 `/v1/models` 校验 API Key 和目标模型。需要使用 Vue 时，在对应工具页面接入 Astro 的 Vue integration；博客页面和其他工具不需要一起迁移。Element Plus 等组件库也只应由实际使用它的工具引入。
+
 ## 本地运行
 
 ```bash

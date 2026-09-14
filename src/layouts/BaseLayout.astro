@@ -19,7 +19,9 @@ const pageTitle = title ? `${title} · Minchieh Fay` : 'Minchieh Fay';
       <div class="header-inner">
         <a class="brand" href="/" aria-label="返回首页"><span class="brand-mark">MF</span><span>Minchieh Fay</span></a>
         <nav class="site-nav" aria-label="主导航">
-          <a href="/">文章</a><a href="/about/">关于</a><a href="/rss.xml">RSS</a>
+          <a href="/" aria-current={Astro.url.pathname === '/' ? 'page' : undefined}>博客</a>
+          <a href="/tools/" aria-current={Astro.url.pathname.startsWith('/tools') ? 'page' : undefined}>工具</a>
+          <a href="/about/">关于</a><a href="/rss.xml">RSS</a>
           <button class="icon-button" type="button" id="theme-toggle" aria-label="切换主题" title="切换主题">◐</button>
         </nav>
       </div>
