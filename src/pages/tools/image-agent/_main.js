@@ -23,6 +23,7 @@ function initImageAgent(apiKey) {
   const prompt = root.querySelector('[data-image-prompt]');
   const input = root.querySelector('[data-image-input]');
   const references = root.querySelector('[data-image-references]');
+  const mentionMenu = root.querySelector('[data-image-mention-menu]');
   const result = root.querySelector('[data-image-result]');
   const error = root.querySelector('[data-image-error]');
   const generate = root.querySelector('[data-image-generate]');
@@ -67,8 +68,21 @@ function initImageAgent(apiKey) {
   // step.1 渲染参考图片并保持 Picture 编号与数组顺序一致
   const renderReferences = () => {
     references.innerHTML = state.images.map((src, index) => (
-      `<figure><img src="${src}" alt="Picture ${index + 1}" /><figcaption><button class="image-reference-tag" type="button" data-insert-reference="${index}">&lt;Picture ${index + 1}&gt;</button></figcaption><button type="button" data-remove-reference="${index}" aria-label="移除图片">×</button></figure>`
+      `<figure><img src="${src}" alt="图${index + 1}" /><span class="image-reference-badge">图${index + 1}</span><button type="button" data-remove-reference="${index}" aria-label="移除图片">×</button></figure>`
     )).join('');
+  };
+
+  // step.1.1 根据 @ 输入显示可引用的参考图片
+  const renderMentionMenu = () => {
+    const match = prompt.value.match(/@([^@\s]*)$/);
+    if (!match || state.images.length === 0) {
+      mentionMenu.hidden = true;
+      return;
+    }
+    mentionMenu.innerHTML = state.images.map((src, index) => (
+      `<button type="button" data-mention-reference="${index}"><img src="${src}" alt="" />图${index + 1}</button>`
+    )).join('');
+    mentionMenu.hidden = false;
   };
 
   // step.2 接收文件选择和剪贴板图片，按进入顺序保存
@@ -76,6 +90,7 @@ function initImageAgent(apiKey) {
     const imageFiles = files.filter((file) => file.type.startsWith('image/'));
     for (const file of imageFiles) state.images.push(await help_readImage(file));
     renderReferences();
+    renderMentionMenu();
   };
 
   // step.3 提交提示词、比例、尺寸和参考图，展示返回的图片 URL
@@ -89,9 +104,11 @@ function initImageAgent(apiKey) {
     error.textContent = '';
     result.innerHTML = '<p class="agent-hint">正在生成图片，请稍候。</p>';
     try {
+      const displayPrompt = prompt.value.trim();
+      const apiPrompt = displayPrompt.replace(/<图(\d+)>/g, '<Picture $1>');
       const requestBody = {
         model: 'agnes-image-2.5-flash',
-        prompt: prompt.value.trim(),
+        prompt: apiPrompt,
         size: root.querySelector('[data-image-size]').value,
         ratio: root.querySelector('[data-image-ratio]').value,
         extra_body: { response_format: 'url' }
@@ -146,19 +163,21 @@ function initImageAgent(apiKey) {
       addImages(files);
     }
   });
+  prompt.addEventListener('input', renderMentionMenu);
   references.addEventListener('click', (event) => {
-    const reference = event.target.closest('[data-insert-reference]');
-    if (reference) {
-      const number = Number(reference.dataset.insertReference) + 1;
-      const insertion = `<Picture ${number}>`;
-      const start = prompt.selectionStart;
-      prompt.setRangeText(insertion, start, prompt.selectionEnd, 'end');
-      prompt.focus();
-      return;
-    }
     const button = event.target.closest('[data-remove-reference]');
     if (button) state.images.splice(Number(button.dataset.removeReference), 1);
     renderReferences();
+    renderMentionMenu();
+  });
+  mentionMenu.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-mention-reference]');
+    if (!button) return;
+    const number = Number(button.dataset.mentionReference) + 1;
+    const start = prompt.value.lastIndexOf('@');
+    prompt.setRangeText(`<图${number}>`, start, prompt.selectionEnd, 'end');
+    prompt.focus();
+    mentionMenu.hidden = true;
   });
   libraryDate.addEventListener('change', renderLibrary);
   library.addEventListener('click', (event) => {

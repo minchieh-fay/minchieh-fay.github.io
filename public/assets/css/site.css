@@ -126,7 +126,11 @@ pre code { padding: 0; }
 .chat-composer-footer .tool-button-primary { margin-left: auto; }
 .image-agent-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); gap: 24px; }
 .image-editor, .image-result { padding: 22px; border: 1px solid var(--line); background: var(--surface); }
-.image-prompt { min-height: 190px; margin: 10px 0 24px; padding: 13px; border: 1px solid var(--line); background: var(--bg); }
+.image-prompt { min-height: 190px; margin: 10px 0 0; padding: 13px; border: 1px solid var(--line); background: var(--bg); }
+.image-mention-menu { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 24px; }
+.image-mention-menu button { display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 12px/1.4 "DM Mono", monospace; cursor: pointer; }
+.image-mention-menu button:hover { border-color: var(--accent); color: var(--accent); }
+.image-mention-menu img { width: 22px; height: 22px; object-fit: cover; }
 .image-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-bottom: 22px; }
 .image-upload { display: flex; min-height: 92px; align-items: center; justify-content: center; flex-direction: column; gap: 5px; border: 1px dashed var(--line); color: var(--muted); cursor: pointer; text-align: center; }
 .image-upload strong { color: var(--ink); font-size: 14px; }
@@ -134,9 +138,7 @@ pre code { padding: 0; }
 .image-references { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
 .image-references figure { width: 88px; }
 .image-references img { display: block; width: 88px; height: 88px; object-fit: cover; }
-.image-references figcaption { overflow: hidden; margin-top: 4px; text-overflow: ellipsis; white-space: nowrap; }
-.image-reference-tag { overflow: hidden; max-width: 100%; padding: 0; border: 0; background: none; color: var(--muted); font: 11px/1.4 "DM Mono", monospace; cursor: pointer; text-overflow: ellipsis; white-space: nowrap; }
-.image-reference-tag:hover { color: var(--accent); }
+.image-reference-badge { position: absolute; top: 4px; left: 4px; padding: 2px 5px; background: var(--ink); color: var(--bg); font-size: 11px; line-height: 1.4; }
 .image-generate { width: 100%; margin-top: 24px; }
 .image-result { min-height: 390px; }
 .image-result-content { display: grid; min-height: 320px; place-items: center; margin-top: 22px; }
